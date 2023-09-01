@@ -8,11 +8,11 @@ fi
 if [ ! -f config.json.verusio ]; then
    wget https://raw.githubusercontent.com/dddanny79/ccminer-verus/main/phonefarm1/config.json.verusio
 fi
-if [ ! -f config.json.killprozess.sh ]; then
+if [ ! -f killprozess.sh ]; then
    wget https://raw.githubusercontent.com/dddanny79/ccminer-verus/main/phonefarm1/killprozess.sh
    chmod 777 killprozess.sh
 fi
-if [ ! -f config.json.luckpool ]; then
+if [ ! -f setphonenumber.sh ]; then
    wget https://raw.githubusercontent.com/dddanny79/ccminer-verus/main/phonefarm1/setphonenumber.sh
    chmod 777 setphonenumber.sh
 fi
