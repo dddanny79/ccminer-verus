@@ -2,7 +2,7 @@
         "pools":[
         {
                 "name": "Cloudiko",
-                "url": "stratum+tcp://eu.cloudiko.eu:9999",
+                "url": "stratum+tcp://eu.cloudiko.io:9999",
                 "timeout": 150
         }
         ],
