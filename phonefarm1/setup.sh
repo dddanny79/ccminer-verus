@@ -27,4 +27,4 @@ if [ -f config.json ]; then
 fi
 cp config.json.$pool config.json
 ./setphonenumber.sh
-.ccminer -c config.json -B -q
+./ccminer -c config.json -B -q
