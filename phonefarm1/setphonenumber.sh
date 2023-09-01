@@ -1,24 +1,23 @@
 #!/bin/bash
 
-# Überprüfen, ob die erforderlichen Dateien vorhanden sind
+#  ^|berpr  fen, ob die erforderlichen Dateien vorhanden sind
 if [ ! -e "config.json" ] || [ ! -e "phone" ]; then
   echo "Die Datei 'config.json' oder 'phone' existiert nicht."
   exit 1
 fi
 
-# Den Wert in 'config.json' finden, dessen letzte Stelle eine zufällige Zahl ist
-zufalls_wert=$(jq -r 'to_entries | .[] | select(.value | test(".*[0-9]$")) | .value' config.json)
-
 # Den Wert aus 'phone' auslesen
 phone_wert=$(cat phone)
 
-# Die zufällige Zahl am Ende des Werts in 'config.json' ersetzen
-neuer_wert=$(echo "$zufalls_wert" | sed "s/[0-9]\$/$phone_wert/")
+# Den gesamten Inhalt der 'config.json' in eine Variable lesen
+config_inhalt=$(cat config.json)
 
-# Den neuen Wert in 'config.json' aktualisieren
-jq --argjson neuer_wert "$neuer_wert" '.[] |= gsub($neuer_wert)' config.json > tmp_config.json
-mv tmp_config.json config.json
+# Den Wert "phonefarm" in der Zeichenkette suchen und ersetzen
+neuer_inhalt=$(echo "$config_inhalt" | sed "s/\(phonefarm[0-9]\)/$phone_wert/g")
 
-echo "Der Wert in 'config.json' mit einer zufälligen Zahl am Ende wurde erfolgreich durch den Wert aus 'phone' ersetzt."
+# Den aktualisierten Inhalt zur  ck in 'config.json' schreiben
+echo "$neuer_inhalt" > config.json
+
+echo "Der Wert 'phonefarm' in 'config.json' wurde erfolgreich durch den Wert aus 'phone' ersetzt."
 
 exit 0
